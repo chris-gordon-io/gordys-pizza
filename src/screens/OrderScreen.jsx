@@ -71,7 +71,7 @@ export default function OrderScreen({ quantities, onChangeQty, onContinue }) {
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Choose your Pizza ('s)" />
+      <ScreenHeader title="Choose your Pizza (s)" />
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
         {PIZZAS.map(pizza => (
           <PizzaCard
