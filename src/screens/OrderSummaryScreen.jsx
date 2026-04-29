@@ -1,10 +1,10 @@
 import ScreenHeader from '../components/ScreenHeader.jsx'
 
 const PIZZAS = {
-  margherita:        { name: 'Margherita',        ingredients: 'San marzano tomato, fior di latte, fresh basil', price: 7 },
-  appleWalnut:       { name: 'Apple and Walnut',  ingredients: 'Apple, blue cheese, crushed walnuts',            price: 9 },
-  balsamicMushrooms: { name: 'Balsamic Mushrooms',ingredients: 'Mixed mushrooms, balsamic reduction, fresh thyme', price: 8 },
-  spud:              { name: 'Hot Potato',         ingredients: 'Potato, rosemary, chilli',                       price: 8 },
+  margherita:        { name: 'Margherita',         ingredients: 'Tomato, Mozzarella',                          price: 7 },
+  appleWalnut:       { name: 'Apple and Walnut',   ingredients: 'Apple, blue cheese, Crushed walnuts',         price: 9 },
+  balsamicMushrooms: { name: 'Balsamic Mushrooms', ingredients: 'Balsamic mushrooms, Tallegio, Lemon thyme',   price: 8 },
+  spud:              { name: 'Hot Potato',          ingredients: 'Potato, Rosemary, Chilli',                    price: 8 },
 }
 
 export default function OrderSummaryScreen({ quantities, onPayPaypal, onPayCash, onCancel }) {
@@ -18,18 +18,18 @@ export default function OrderSummaryScreen({ quantities, onPayPaypal, onPayCash,
 
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
         {orderedItems.map(([id, qty]) => (
-          <div key={id} className="flex gap-6 items-center pb-6 border-b border-teal-mid w-full">
-            <div className="flex flex-col gap-1 flex-1 min-w-0">
-              <p className="font-condensed font-semibold text-teal text-[24px] tracking-[2.4px] leading-[28px] uppercase">
-                {PIZZAS[id].name}
+          <div key={id} className="flex flex-col gap-2 pb-6 border-b border-teal w-full shrink-0">
+            <div className="flex items-start gap-3">
+              <p className="flex-1 font-condensed font-semibold text-[#0e2c35] text-[20px] tracking-[2px] leading-[28px] uppercase">
+                {qty > 1 ? `${qty}× ${PIZZAS[id].name}` : PIZZAS[id].name}
               </p>
-              <p className="font-body text-teal-mid text-[14px] tracking-[0.14px]">
-                {PIZZAS[id].ingredients}
+              <p className="font-condensed font-semibold text-teal text-[20px] tracking-[2px] leading-[28px] shrink-0">
+                £{PIZZAS[id].price * qty}
               </p>
             </div>
-            <span className="font-condensed font-semibold text-teal text-[24px] tracking-[2.4px] shrink-0">
-              {qty}
-            </span>
+            <p className="font-body text-teal text-[14px] tracking-[0.14px]">
+              {PIZZAS[id].ingredients}
+            </p>
           </div>
         ))}
         <div className="h-2" />
