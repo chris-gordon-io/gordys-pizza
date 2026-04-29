@@ -1,10 +1,10 @@
 import ScreenHeader from '../components/ScreenHeader.jsx'
 
 const PIZZAS = [
-  { id: 'margherita', name: 'Margherita', ingredients: 'San marzano tomato, fior di latte, fresh basil' },
-  { id: 'appleWalnut', name: 'Apple and Walnut', ingredients: 'Apple, blue cheese, crushed walnuts' },
-  { id: 'balsamicMushrooms', name: 'Balsamic Mushrooms', ingredients: 'Mixed mushrooms, balsamic reduction, fresh thyme' },
-  { id: 'spud', name: 'Hot potato', ingredients: 'Potato, rosemary, chilli' },
+  { id: 'margherita',        name: 'Margherita',         ingredients: 'Tomato, Mozzarella',                          price: '£7' },
+  { id: 'appleWalnut',       name: 'Apple and Walnut',   ingredients: 'Apple, blue cheese, Crushed walnuts',         price: '£9' },
+  { id: 'balsamicMushrooms', name: 'Balsamic Mushrooms', ingredients: 'Balsamic mushrooms, Tallegio, Lemon thyme',   price: '£8' },
+  { id: 'spud',              name: 'Hot Potato',         ingredients: 'Potato, Rosemary, Chilli',                    price: '£8' },
 ]
 
 function MinusIcon() {
@@ -52,16 +52,21 @@ function Counter({ count, onDecrement, onIncrement }) {
 
 function PizzaCard({ pizza, count, onDecrement, onIncrement }) {
   return (
-    <div className="flex gap-6 items-center pb-6 border-b border-teal-mid w-full shrink-0">
-      <div className="flex flex-col gap-1 flex-1 min-w-0">
-        <p className="font-condensed font-semibold text-teal text-[24px] tracking-[2.4px] leading-[28px] uppercase">
+    <div className="flex flex-col gap-2 pb-6 border-b border-teal w-full shrink-0">
+      <div className="flex items-start gap-3">
+        <p className="flex-1 font-condensed font-semibold text-[#0e2c35] text-[20px] tracking-[2px] leading-[28px] uppercase">
           {pizza.name}
         </p>
-        <p className="font-body text-teal-mid text-[14px] tracking-[0.14px]">
-          {pizza.ingredients}
+        <p className="font-condensed font-semibold text-teal text-[20px] tracking-[2px] leading-[28px] shrink-0">
+          {pizza.price}
         </p>
       </div>
-      <Counter count={count} onDecrement={onDecrement} onIncrement={onIncrement} />
+      <div className="flex items-start gap-3">
+        <p className="flex-1 font-body text-teal text-[14px] tracking-[0.14px]">
+          {pizza.ingredients}
+        </p>
+        <Counter count={count} onDecrement={onDecrement} onIncrement={onIncrement} />
+      </div>
     </div>
   )
 }

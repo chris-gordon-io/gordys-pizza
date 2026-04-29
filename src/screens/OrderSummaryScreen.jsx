@@ -1,21 +1,16 @@
 import ScreenHeader from '../components/ScreenHeader.jsx'
 
-const PIZZA_NAMES = {
-  margherita: 'Margherita',
-  appleWalnut: 'Apple and Walnut',
-  balsamicMushrooms: 'Balsamic Mushrooms',
-  spud: 'Spud',
-}
-
-const PIZZA_INGREDIENTS = {
-  margherita: 'San marzano tomato, fior di latte, fresh basil',
-  appleWalnut: 'Apple, blue cheese, crushed walnuts',
-  balsamicMushrooms: 'Mixed mushrooms, balsamic reduction, fresh thyme',
-  spud: 'Potato, rosemary, chilli',
+const PIZZAS = {
+  margherita:        { name: 'Margherita',        ingredients: 'San marzano tomato, fior di latte, fresh basil', price: 7 },
+  appleWalnut:       { name: 'Apple and Walnut',  ingredients: 'Apple, blue cheese, crushed walnuts',            price: 9 },
+  balsamicMushrooms: { name: 'Balsamic Mushrooms',ingredients: 'Mixed mushrooms, balsamic reduction, fresh thyme', price: 8 },
+  spud:              { name: 'Hot Potato',         ingredients: 'Potato, rosemary, chilli',                       price: 8 },
 }
 
 export default function OrderSummaryScreen({ quantities, onPayPaypal, onPayCash, onCancel }) {
   const orderedItems = Object.entries(quantities).filter(([, qty]) => qty > 0)
+  const total = orderedItems.reduce((sum, [id, qty]) => sum + PIZZAS[id].price * qty, 0)
+  const totalStr = `£${total.toFixed(2)}`
 
   return (
     <div className="flex flex-col h-full bg-cream">
@@ -26,10 +21,10 @@ export default function OrderSummaryScreen({ quantities, onPayPaypal, onPayCash,
           <div key={id} className="flex gap-6 items-center pb-6 border-b border-teal-mid w-full">
             <div className="flex flex-col gap-1 flex-1 min-w-0">
               <p className="font-condensed font-semibold text-teal text-[24px] tracking-[2.4px] leading-[28px] uppercase">
-                {PIZZA_NAMES[id]}
+                {PIZZAS[id].name}
               </p>
               <p className="font-body text-teal-mid text-[14px] tracking-[0.14px]">
-                {PIZZA_INGREDIENTS[id]}
+                {PIZZAS[id].ingredients}
               </p>
             </div>
             <span className="font-condensed font-semibold text-teal text-[24px] tracking-[2.4px] shrink-0">
@@ -45,13 +40,13 @@ export default function OrderSummaryScreen({ quantities, onPayPaypal, onPayCash,
           onClick={onPayPaypal}
           className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase bg-crimson text-cream active:bg-crimson-dark"
         >
-          Pay with PayPal Link
+          Pay {totalStr} with PayPal Link
         </button>
         <button
           onClick={onPayCash}
           className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase border border-teal text-teal active:bg-teal/5"
         >
-          Pay with Cash
+          Pay {totalStr} with Cash
         </button>
         <button
           onClick={onCancel}
