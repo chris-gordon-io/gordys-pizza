@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import SplashScreen from './screens/SplashScreen.jsx'
 import OrderScreen from './screens/OrderScreen.jsx'
 import DoorNumberScreen from './screens/DoorNumberScreen.jsx'
@@ -71,6 +72,7 @@ export default function App() {
           onCancel={handleCancel}
         />
       )}
+      <Analytics />
     </div>
   )
 }
