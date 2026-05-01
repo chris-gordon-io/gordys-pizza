@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import GordysLogo from '../components/GordysLogo.jsx'
 
 const PIZZA_NAMES = {
@@ -23,9 +24,16 @@ function formatDate(ts) {
 }
 
 export default function AdminScreen({ onLogout }) {
-  const raw = localStorage.getItem('gordys_orders')
-  const orders = raw ? JSON.parse(raw) : []
+  const [orders, setOrders] = useState(() => {
+    const raw = localStorage.getItem('gordys_orders')
+    return raw ? JSON.parse(raw) : []
+  })
   const sorted = [...orders].reverse()
+
+  function handleClearOrders() {
+    localStorage.removeItem('gordys_orders')
+    setOrders([])
+  }
 
   return (
     <div className="flex flex-col h-full bg-cream">
@@ -76,7 +84,15 @@ export default function AdminScreen({ onLogout }) {
         })}
       </div>
 
-      <div className="shrink-0 p-4">
+      <div className="shrink-0 flex flex-col gap-3 p-4">
+        {orders.length > 0 && (
+          <button
+            onClick={handleClearOrders}
+            className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase border border-crimson text-crimson active:bg-crimson/5"
+          >
+            Clear orders
+          </button>
+        )}
         <button
           onClick={onLogout}
           className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase border border-teal text-teal active:bg-teal/5"
