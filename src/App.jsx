@@ -4,6 +4,8 @@ import OrderScreen from './screens/OrderScreen.jsx'
 import DoorNumberScreen from './screens/DoorNumberScreen.jsx'
 import TimeScreen from './screens/TimeScreen.jsx'
 import OrderSummaryScreen from './screens/OrderSummaryScreen.jsx'
+import AdminLoginScreen from './screens/AdminLoginScreen.jsx'
+import AdminScreen from './screens/AdminScreen.jsx'
 
 const INITIAL_QUANTITIES = {
   margherita: 0,
@@ -12,11 +14,18 @@ const INITIAL_QUANTITIES = {
   spud: 0,
 }
 
+function saveOrder(order) {
+  const existing = JSON.parse(localStorage.getItem('gordys_orders') || '[]')
+  existing.push(order)
+  localStorage.setItem('gordys_orders', JSON.stringify(existing))
+}
+
 export default function App() {
   const [screen, setScreen] = useState('splash')
   const [quantities, setQuantities] = useState(INITIAL_QUANTITIES)
   const [doorNumber, setDoorNumber] = useState('')
   const [selectedTime, setSelectedTime] = useState(null)
+  const [prevScreen, setPrevScreen] = useState(null)
 
   useEffect(() => {
     if (screen !== 'splash') return
@@ -35,6 +44,24 @@ export default function App() {
     setScreen('order')
   }
 
+  function handleLogoPress() {
+    setPrevScreen(screen)
+    setScreen('admin-login')
+  }
+
+  function handlePay(method) {
+    saveOrder({
+      quantities,
+      doorNumber,
+      deliveryTime: selectedTime,
+      paymentMethod: method,
+      placedAt: Date.now(),
+    })
+    handleCancel()
+  }
+
+  const logoPress = screen === 'admin-login' || screen === 'admin' ? undefined : handleLogoPress
+
   return (
     <div className="h-full w-full bg-cream overflow-hidden">
       {screen === 'splash' && (
@@ -45,6 +72,7 @@ export default function App() {
           quantities={quantities}
           onChangeQty={handleChangeQty}
           onContinue={() => setScreen('door-number')}
+          onLogoPress={logoPress}
         />
       )}
       {screen === 'door-number' && (
@@ -53,6 +81,7 @@ export default function App() {
           onChangeDoor={setDoorNumber}
           onContinue={() => setScreen('time')}
           onBack={() => setScreen('order')}
+          onLogoPress={logoPress}
         />
       )}
       {screen === 'time' && (
@@ -61,14 +90,27 @@ export default function App() {
           onSelectTime={setSelectedTime}
           onContinue={() => setScreen('order-summary')}
           onBack={() => setScreen('door-number')}
+          onLogoPress={logoPress}
         />
       )}
       {screen === 'order-summary' && (
         <OrderSummaryScreen
           quantities={quantities}
-          onPayPaypal={() => alert('PayPal Link — coming soon!')}
-          onPayCash={() => alert('Cash payment confirmed!')}
+          onPayPaypal={() => handlePay('paypal')}
+          onPayCash={() => handlePay('cash')}
           onCancel={handleCancel}
+          onLogoPress={logoPress}
+        />
+      )}
+      {screen === 'admin-login' && (
+        <AdminLoginScreen
+          onLogin={() => setScreen('admin')}
+          onBack={() => setScreen(prevScreen || 'order')}
+        />
+      )}
+      {screen === 'admin' && (
+        <AdminScreen
+          onLogout={() => setScreen('order')}
         />
       )}
     </div>

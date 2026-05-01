@@ -71,12 +71,12 @@ function PizzaCard({ pizza, count, onDecrement, onIncrement }) {
   )
 }
 
-export default function OrderScreen({ quantities, onChangeQty, onContinue }) {
+export default function OrderScreen({ quantities, onChangeQty, onContinue, onLogoPress }) {
   const hasItems = Object.values(quantities).some(q => q > 0)
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Choose your Pizza (s)" />
+      <ScreenHeader title="Choose your Pizza (s)" onLogoPress={onLogoPress} />
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
         {PIZZAS.map(pizza => (
           <PizzaCard

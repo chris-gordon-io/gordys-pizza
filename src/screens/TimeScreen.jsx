@@ -2,7 +2,7 @@ import ScreenHeader from '../components/ScreenHeader.jsx'
 
 const TIMES = ['5:00', '5:30', '6:00', '6:30', '7:00', '7:30', '8:00', '8:30', '9:00', '9:30']
 
-export default function TimeScreen({ selectedTime, onSelectTime, onContinue, onBack }) {
+export default function TimeScreen({ selectedTime, onSelectTime, onContinue, onBack, onLogoPress }) {
   const rows = []
   for (let i = 0; i < TIMES.length; i += 2) {
     rows.push(TIMES.slice(i, i + 2))
@@ -10,7 +10,7 @@ export default function TimeScreen({ selectedTime, onSelectTime, onContinue, onB
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Tell me when you want them/it" />
+      <ScreenHeader title="Tell me when you want them/it" onLogoPress={onLogoPress} />
 
       <div className="flex-1 flex items-center justify-center px-6 overflow-y-auto">
         <div className="flex flex-col gap-1 w-full">

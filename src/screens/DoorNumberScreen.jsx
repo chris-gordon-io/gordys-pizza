@@ -1,11 +1,11 @@
 import ScreenHeader from '../components/ScreenHeader.jsx'
 
-export default function DoorNumberScreen({ doorNumber, onChangeDoor, onContinue, onBack }) {
+export default function DoorNumberScreen({ doorNumber, onChangeDoor, onContinue, onBack, onLogoPress }) {
   const hasNumber = doorNumber.length > 0
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Tell me your door number" />
+      <ScreenHeader title="Tell me your door number" onLogoPress={onLogoPress} />
 
       <div className="flex-1 flex items-center justify-center">
         <input
