@@ -6,6 +6,7 @@ import TimeScreen from './screens/TimeScreen.jsx'
 import OrderSummaryScreen from './screens/OrderSummaryScreen.jsx'
 import AdminLoginScreen from './screens/AdminLoginScreen.jsx'
 import AdminScreen from './screens/AdminScreen.jsx'
+import OrderConfirmedScreen from './screens/OrderConfirmedScreen.jsx'
 
 const INITIAL_QUANTITIES = {
   margherita: 0,
@@ -29,7 +30,7 @@ export default function App() {
 
   useEffect(() => {
     if (screen !== 'splash') return
-    const t = setTimeout(() => setScreen('order'), 2600)
+    const t = setTimeout(() => setScreen('order'), 1200)
     return () => clearTimeout(t)
   }, [screen])
 
@@ -57,7 +58,7 @@ export default function App() {
       paymentMethod: method,
       placedAt: Date.now(),
     })
-    handleCancel()
+    setScreen('order-confirmed')
   }
 
   const logoPress = screen === 'admin-login' || screen === 'admin' ? undefined : handleLogoPress
@@ -111,6 +112,11 @@ export default function App() {
       {screen === 'admin' && (
         <AdminScreen
           onLogout={() => setScreen('order')}
+        />
+      )}
+      {screen === 'order-confirmed' && (
+        <OrderConfirmedScreen
+          onHome={() => { handleCancel(); setScreen('splash') }}
         />
       )}
     </div>
