@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import SplashScreen from './screens/SplashScreen.jsx'
 import OrderScreen from './screens/OrderScreen.jsx'
-import DoorNumberScreen from './screens/DoorNumberScreen.jsx'
-import TimeScreen from './screens/TimeScreen.jsx'
+import DeliveryDetailsScreen from './screens/DeliveryDetailsScreen.jsx'
 import OrderSummaryScreen from './screens/OrderSummaryScreen.jsx'
 import AdminLoginScreen from './screens/AdminLoginScreen.jsx'
 import AdminScreen from './screens/AdminScreen.jsx'
@@ -72,25 +71,18 @@ export default function App() {
         <OrderScreen
           quantities={quantities}
           onChangeQty={handleChangeQty}
-          onContinue={() => setScreen('door-number')}
+          onContinue={() => setScreen('delivery')}
           onLogoPress={logoPress}
         />
       )}
-      {screen === 'door-number' && (
-        <DoorNumberScreen
+      {screen === 'delivery' && (
+        <DeliveryDetailsScreen
           doorNumber={doorNumber}
           onChangeDoor={setDoorNumber}
-          onContinue={() => setScreen('time')}
-          onBack={() => setScreen('order')}
-          onLogoPress={logoPress}
-        />
-      )}
-      {screen === 'time' && (
-        <TimeScreen
           selectedTime={selectedTime}
           onSelectTime={setSelectedTime}
           onContinue={() => setScreen('order-summary')}
-          onBack={() => setScreen('door-number')}
+          onBack={() => setScreen('order')}
           onLogoPress={logoPress}
         />
       )}
