@@ -28,11 +28,20 @@ export default function AdminScreen({ onLogout }) {
     const raw = localStorage.getItem('gordys_orders')
     return raw ? JSON.parse(raw) : []
   })
+  const [deliveryDate, setDeliveryDate] = useState(
+    () => localStorage.getItem('gordys_delivery_date') || ''
+  )
   const sorted = [...orders].reverse()
 
   function handleClearOrders() {
     localStorage.removeItem('gordys_orders')
     setOrders([])
+  }
+
+  function handleSetDate(val) {
+    setDeliveryDate(val)
+    if (val) localStorage.setItem('gordys_delivery_date', val)
+    else localStorage.removeItem('gordys_delivery_date')
   }
 
   return (
@@ -45,6 +54,25 @@ export default function AdminScreen({ onLogout }) {
       </div>
 
       <div className="flex-1 overflow-y-auto px-6 flex flex-col gap-6 pb-6">
+        {/* Delivery date setter */}
+        <div className="flex flex-col gap-2 pb-6 border-b border-teal">
+          <p className="font-condensed font-semibold text-crimson text-[13px] tracking-[2px] uppercase">Delivery date</p>
+          <input
+            type="date"
+            value={deliveryDate}
+            onChange={e => handleSetDate(e.target.value)}
+            className="w-full border border-teal bg-white px-3 py-2 font-body text-teal text-[16px] focus:outline-none"
+          />
+          {deliveryDate && (
+            <button
+              onClick={() => handleSetDate('')}
+              className="self-start font-condensed text-[13px] tracking-[1.4px] uppercase text-teal/50 active:opacity-60"
+            >
+              Clear date
+            </button>
+          )}
+        </div>
+
         {sorted.length === 0 && (
           <p className="font-body text-teal/50 text-[14px] text-center pt-12">No orders yet</p>
         )}
