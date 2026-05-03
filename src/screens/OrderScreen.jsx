@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import ScreenHeader from '../components/ScreenHeader.jsx'
 
 function formatDeliveryDate(iso) {
@@ -84,8 +83,7 @@ function PizzaCard({ pizza, count, onDecrement, onIncrement }) {
 
 export default function OrderScreen({ quantities, onChangeQty, onContinue, onLogoPress }) {
   const hasItems = Object.values(quantities).some(q => q > 0)
-  const [deliveryDate] = useState(() => localStorage.getItem('gordys_delivery_date') || '')
-  const formattedDate = formatDeliveryDate(deliveryDate)
+  const formattedDate = formatDeliveryDate(localStorage.getItem('gordys_delivery_date') || '')
 
   return (
     <div className="flex flex-col h-full bg-cream">
