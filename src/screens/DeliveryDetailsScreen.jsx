@@ -52,7 +52,7 @@ export default function DeliveryDetailsScreen({
                     <button
                       key={time}
                       onClick={() => onSelectTime(time)}
-                      className={`flex-1 py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase transition-colors ${selected ? 'bg-crimson text-cream' : 'bg-white text-teal active:bg-gray-100'}`}
+                      className={`flex-1 h-[48px] font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase transition-colors ${selected ? 'bg-crimson text-cream' : 'bg-white text-teal active:bg-gray-100'}`}
                     >
                       {time}
                     </button>
