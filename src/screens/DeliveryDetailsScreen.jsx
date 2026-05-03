@@ -36,7 +36,7 @@ export default function DeliveryDetailsScreen({
         </div>
 
         {/* Divider */}
-        <div className="border-t border-teal" />
+        <div className="border-t border-teal my-[16px]" />
 
         {/* Time picker */}
         <div className="flex flex-col gap-3">
