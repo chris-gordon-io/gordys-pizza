@@ -37,7 +37,11 @@ export default function OrderSummaryScreen({ quantities, onPayPaypal, onPayCash,
 
       <div className="shrink-0 flex flex-col gap-[10px] p-4 bg-cream">
         <button
-          onClick={onPayPaypal}
+          onClick={() => {
+            const url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=c.p.gordon%40me.com&amount=${total.toFixed(2)}&currency_code=GBP&item_name=Gordy%27s+Pizza`
+            window.open(url, '_blank')
+            onPayPaypal()
+          }}
           className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase bg-crimson text-cream active:bg-crimson-dark"
         >
           Pay {totalStr} with PayPal Link
