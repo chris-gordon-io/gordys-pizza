@@ -31,7 +31,7 @@ export default function DeliveryDetailsScreen({
             value={doorNumber}
             onChange={e => onChangeDoor(e.target.value.replace(/\D/g, ''))}
             placeholder="00"
-            className="w-[121px] h-[72px] bg-white border border-teal text-center font-condensed font-semibold text-[18px] tracking-[1.8px] text-teal placeholder:text-teal/20 focus:outline-none"
+            className="w-[80px] h-[48px] bg-white border border-teal text-center font-condensed font-semibold text-[18px] tracking-[1.8px] text-teal placeholder:text-teal/20 focus:outline-none"
           />
         </div>
 
