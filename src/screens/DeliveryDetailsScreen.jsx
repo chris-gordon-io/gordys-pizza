@@ -30,8 +30,8 @@ export default function DeliveryDetailsScreen({
             maxLength={4}
             value={doorNumber}
             onChange={e => onChangeDoor(e.target.value.replace(/\D/g, ''))}
-            placeholder="—"
-            className="w-[121px] h-[72px] bg-white border border-teal text-center font-condensed font-semibold text-[36px] tracking-[3.6px] text-teal placeholder:text-teal/20 focus:outline-none"
+            placeholder="00"
+            className="w-[121px] h-[72px] bg-white border border-teal text-center font-condensed font-semibold text-[18px] tracking-[1.8px] text-teal placeholder:text-teal/20 focus:outline-none"
           />
         </div>
 
