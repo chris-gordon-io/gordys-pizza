@@ -1,5 +1,15 @@
 import ScreenHeader from '../components/ScreenHeader.jsx'
 
+function formatDeliveryDate(iso) {
+  if (!iso) return null
+  const d = new Date(iso + 'T12:00:00')
+  const day = d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase()
+  const date = d.getDate()
+  const n = date % 10, m = date % 100
+  const suffix = m === 11 || m === 12 || m === 13 ? 'TH' : n === 1 ? 'ST' : n === 2 ? 'ND' : n === 3 ? 'RD' : 'TH'
+  return `${day} ${date}${suffix}`
+}
+
 const PIZZAS = {
   margherita:        { name: 'Margherita',         ingredients: 'Tomato, Mozzarella',                          price: 6 },
   appleWalnut:       { name: 'Apple and Walnut',   ingredients: 'Apple, blue cheese, Crushed walnuts',         price: 8 },
@@ -11,10 +21,19 @@ export default function OrderSummaryScreen({ quantities, deliveryTime, onPayPayp
   const orderedItems = Object.entries(quantities).filter(([, qty]) => qty > 0)
   const total = orderedItems.reduce((sum, [id, qty]) => sum + PIZZAS[id].price * qty, 0)
   const totalStr = `£${total.toFixed(2)}`
+  const formattedDate = formatDeliveryDate(localStorage.getItem('gordys_delivery_date') || '')
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Your order" subtitle={deliveryTime ? `Delivery ${deliveryTime}` : undefined} subtitleIcon="clock" onLogoPress={onLogoPress} onClose={onCancel} />
+      <ScreenHeader
+        title="Your order"
+        subtitle={formattedDate ? `Delivery ${formattedDate}` : undefined}
+        subtitleIcon="calendar"
+        subtitle2={deliveryTime ? `Delivery ${deliveryTime}` : undefined}
+        subtitleIcon2="clock"
+        onLogoPress={onLogoPress}
+        onClose={onCancel}
+      />
 
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
         {orderedItems.map(([id, qty]) => (

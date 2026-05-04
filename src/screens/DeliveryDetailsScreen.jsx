@@ -3,12 +3,23 @@ import ScreenHeader from '../components/ScreenHeader.jsx'
 
 const TIMES = ['5:00', '5:30', '6:00', '6:30', '7:00', '7:30', '8:00', '8:30', '9:00', '9:30']
 
+function formatDeliveryDate(iso) {
+  if (!iso) return null
+  const d = new Date(iso + 'T12:00:00')
+  const day = d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase()
+  const date = d.getDate()
+  const n = date % 10, m = date % 100
+  const suffix = m === 11 || m === 12 || m === 13 ? 'TH' : n === 1 ? 'ST' : n === 2 ? 'ND' : n === 3 ? 'RD' : 'TH'
+  return `${day} ${date}${suffix}`
+}
+
 export default function DeliveryDetailsScreen({
   doorNumber, onChangeDoor,
   selectedTime, onSelectTime,
   onContinue, onBack, onLogoPress,
 }) {
   const canContinue = doorNumber.length > 0 && selectedTime
+  const formattedDate = formatDeliveryDate(localStorage.getItem('gordys_delivery_date') || '')
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -21,7 +32,7 @@ export default function DeliveryDetailsScreen({
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Delivery Details" onLogoPress={onLogoPress} onBack={onBack} />
+      <ScreenHeader title="Delivery Details" subtitle={formattedDate ? `Delivery ${formattedDate}` : undefined} subtitleIcon="calendar" onLogoPress={onLogoPress} onBack={onBack} />
 
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
 

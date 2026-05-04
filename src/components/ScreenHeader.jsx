@@ -16,8 +16,19 @@ function ClockIcon() {
   )
 }
 
-export default function ScreenHeader({ title, subtitle, subtitleIcon, onLogoPress, onBack, onClose }) {
-  const Icon = subtitleIcon === 'clock' ? ClockIcon : CalendarIcon
+function SubtitleRow({ text, icon }) {
+  const Icon = icon === 'clock' ? ClockIcon : CalendarIcon
+  return (
+    <div className="flex items-center gap-[6px] text-crimson">
+      <Icon />
+      <p className="font-condensed font-semibold text-crimson text-[14px] tracking-[1.4px] uppercase leading-none">
+        {text}
+      </p>
+    </div>
+  )
+}
+
+export default function ScreenHeader({ title, subtitle, subtitleIcon, subtitle2, subtitleIcon2, onLogoPress, onBack, onClose }) {
   return (
     <div className="relative flex flex-col gap-6 items-center justify-center py-6 bg-cream shrink-0">
       {onBack && (
@@ -49,12 +60,10 @@ export default function ScreenHeader({ title, subtitle, subtitleIcon, onLogoPres
         <p className="font-condensed font-semibold text-crimson text-[18px] text-center tracking-[1.8px] uppercase leading-none">
           {title}
         </p>
-        {subtitle && (
-          <div className="flex items-center gap-[6px] text-crimson">
-            <Icon />
-            <p className="font-condensed font-semibold text-crimson text-[14px] tracking-[1.4px] uppercase leading-none">
-              {subtitle}
-            </p>
+        {(subtitle || subtitle2) && (
+          <div className="flex flex-col items-center gap-2">
+            {subtitle && <SubtitleRow text={subtitle} icon={subtitleIcon} />}
+            {subtitle2 && <SubtitleRow text={subtitle2} icon={subtitleIcon2} />}
           </div>
         )}
       </div>
