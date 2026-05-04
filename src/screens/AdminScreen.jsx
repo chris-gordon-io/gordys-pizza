@@ -9,10 +9,10 @@ const PIZZA_NAMES = {
 }
 
 const PIZZA_PRICES = {
-  margherita: 7,
-  appleWalnut: 9,
-  balsamicMushrooms: 8,
-  spud: 8,
+  margherita: 6,
+  appleWalnut: 8,
+  balsamicMushrooms: 7,
+  spud: 7,
 }
 
 function formatTime(ts) {

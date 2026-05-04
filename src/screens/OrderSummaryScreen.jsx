@@ -1,10 +1,10 @@
 import ScreenHeader from '../components/ScreenHeader.jsx'
 
 const PIZZAS = {
-  margherita:        { name: 'Margherita',         ingredients: 'Tomato, Mozzarella',                          price: 7 },
-  appleWalnut:       { name: 'Apple and Walnut',   ingredients: 'Apple, blue cheese, Crushed walnuts',         price: 9 },
-  balsamicMushrooms: { name: 'Balsamic Mushrooms', ingredients: 'Balsamic mushrooms, Tallegio, Lemon thyme',   price: 8 },
-  spud:              { name: 'Hot Potato',          ingredients: 'Potato, Rosemary, Chilli',                    price: 8 },
+  margherita:        { name: 'Margherita',         ingredients: 'Tomato, Mozzarella',                          price: 6 },
+  appleWalnut:       { name: 'Apple and Walnut',   ingredients: 'Apple, blue cheese, Crushed walnuts',         price: 8 },
+  balsamicMushrooms: { name: 'Balsamic Mushrooms', ingredients: 'Balsamic mushrooms, Tallegio, Lemon thyme',   price: 7 },
+  spud:              { name: 'Hot Potato',          ingredients: 'Potato, Rosemary, Chilli',                    price: 7 },
 }
 
 export default function OrderSummaryScreen({ quantities, onPayPaypal, onPayCash, onCancel, onLogoPress }) {

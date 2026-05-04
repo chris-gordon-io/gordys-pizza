@@ -11,10 +11,10 @@ function formatDeliveryDate(iso) {
 }
 
 const PIZZAS = [
-  { id: 'margherita',        name: 'Margherita',         ingredients: 'Tomato, Mozzarella',                          price: '£7' },
-  { id: 'appleWalnut',       name: 'Apple and Walnut',   ingredients: 'Apple, blue cheese, Crushed walnuts',         price: '£9' },
-  { id: 'balsamicMushrooms', name: 'Balsamic Mushrooms', ingredients: 'Balsamic mushrooms, Tallegio, Lemon thyme',   price: '£8' },
-  { id: 'spud',              name: 'Hot Potato',         ingredients: 'Potato, Rosemary, Chilli',                    price: '£8' },
+  { id: 'margherita',        name: 'Margherita',         ingredients: 'Tomato, Mozzarella',                          price: '£6' },
+  { id: 'appleWalnut',       name: 'Apple and Walnut',   ingredients: 'Apple, blue cheese, Crushed walnuts',         price: '£8' },
+  { id: 'balsamicMushrooms', name: 'Balsamic Mushrooms', ingredients: 'Balsamic mushrooms, Tallegio, Lemon thyme',   price: '£7' },
+  { id: 'spud',              name: 'Hot Potato',         ingredients: 'Potato, Rosemary, Chilli',                    price: '£7' },
 ]
 
 function MinusIcon() {
