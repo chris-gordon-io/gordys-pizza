@@ -6,7 +6,7 @@ export default function ScreenHeader({ title, subtitle, onLogoPress }) {
       <button onClick={onLogoPress} className="focus:outline-none" aria-label="Admin">
         <GordysLogo className="w-[78px] h-auto" />
       </button>
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col items-center gap-4">
         <p className="font-condensed font-semibold text-crimson text-[18px] text-center tracking-[1.8px] uppercase leading-none">
           {title}
         </p>
