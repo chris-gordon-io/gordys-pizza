@@ -18,7 +18,7 @@ export default function OrderSummaryScreen({ quantities, onPayPaypal, onPayCash,
 
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
         {orderedItems.map(([id, qty]) => (
-          <div key={id} className="flex flex-col gap-2 pb-6 border-b border-teal w-full shrink-0">
+          <div key={id} className="flex flex-col gap-2 w-full shrink-0">
             <div className="flex items-start gap-3">
               <p className="flex-1 font-condensed font-semibold text-[#0e2c35] text-[20px] tracking-[2px] leading-[28px] uppercase">
                 {qty > 1 ? `${qty}× ${PIZZAS[id].name}` : PIZZAS[id].name}
