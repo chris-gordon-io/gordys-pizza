@@ -34,7 +34,7 @@ export default function ScreenHeader({ title, subtitle, subtitleIcon, onLogoPres
       {onClose && (
         <button
           onClick={onClose}
-          className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 text-teal active:opacity-60"
+          className="absolute left-[12px] top-[12px] flex items-center justify-center w-10 h-10 text-teal active:opacity-60"
           aria-label="Close"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
