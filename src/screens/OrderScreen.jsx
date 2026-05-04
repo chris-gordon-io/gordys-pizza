@@ -36,22 +36,25 @@ function PlusIcon() {
 function Counter({ count, onDecrement, onIncrement }) {
   return (
     <div className="flex items-center shrink-0">
-      <button
-        onClick={onDecrement}
-        disabled={count === 0}
-        className="bg-white flex items-center justify-center w-10 h-10 text-teal disabled:opacity-30 active:bg-gray-100"
-        aria-label="Remove one"
-      >
-        <MinusIcon />
-      </button>
-      <div className="w-10 h-10 flex items-center justify-center">
-        <span className={`font-condensed font-semibold text-[24px] tracking-[2.4px] text-teal ${count === 0 ? 'opacity-20' : ''}`}>
-          {count}
-        </span>
-      </div>
+      {count > 0 && (
+        <>
+          <button
+            onClick={onDecrement}
+            className="bg-white flex items-center justify-center w-8 h-8 text-teal active:bg-gray-100"
+            aria-label="Remove one"
+          >
+            <MinusIcon />
+          </button>
+          <div className="w-8 h-8 flex items-center justify-center">
+            <span className="font-condensed font-semibold text-[24px] tracking-[2.4px] text-teal">
+              {count}
+            </span>
+          </div>
+        </>
+      )}
       <button
         onClick={onIncrement}
-        className="bg-white flex items-center justify-center w-10 h-10 text-teal active:bg-gray-100"
+        className="bg-white flex items-center justify-center w-8 h-8 text-teal active:bg-gray-100"
         aria-label="Add one"
       >
         <PlusIcon />
