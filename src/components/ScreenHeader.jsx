@@ -1,6 +1,23 @@
 import GordysLogo from './GordysLogo.jsx'
 
-export default function ScreenHeader({ title, subtitle, onLogoPress, onBack }) {
+function CalendarIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-[14px] h-[14px] shrink-0">
+      <path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zM7 12h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
+    </svg>
+  )
+}
+
+function ClockIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-[14px] h-[14px] shrink-0">
+      <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+    </svg>
+  )
+}
+
+export default function ScreenHeader({ title, subtitle, subtitleIcon, onLogoPress, onBack }) {
+  const Icon = subtitleIcon === 'clock' ? ClockIcon : CalendarIcon
   return (
     <div className="relative flex flex-col gap-6 items-center justify-center py-6 bg-cream shrink-0">
       {onBack && (
@@ -23,9 +40,7 @@ export default function ScreenHeader({ title, subtitle, onLogoPress, onBack }) {
         </p>
         {subtitle && (
           <div className="flex items-center gap-[6px] text-crimson">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-[14px] h-[14px] shrink-0">
-              <path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zM7 12h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
-            </svg>
+            <Icon />
             <p className="font-condensed font-semibold text-crimson text-[14px] tracking-[1.4px] uppercase leading-none">
               {subtitle}
             </p>

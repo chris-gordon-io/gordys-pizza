@@ -89,6 +89,7 @@ export default function App() {
       {screen === 'order-summary' && (
         <OrderSummaryScreen
           quantities={quantities}
+          deliveryTime={selectedTime}
           onPayPaypal={() => handlePay('paypal')}
           onPayCash={() => handlePay('cash')}
           onCancel={handleCancel}

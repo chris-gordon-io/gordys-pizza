@@ -7,14 +7,14 @@ const PIZZAS = {
   spud:              { name: 'Hot Potato',          ingredients: 'Potato, Rosemary, Chilli',                    price: 7 },
 }
 
-export default function OrderSummaryScreen({ quantities, onPayPaypal, onPayCash, onCancel, onLogoPress }) {
+export default function OrderSummaryScreen({ quantities, deliveryTime, onPayPaypal, onPayCash, onCancel, onLogoPress }) {
   const orderedItems = Object.entries(quantities).filter(([, qty]) => qty > 0)
   const total = orderedItems.reduce((sum, [id, qty]) => sum + PIZZAS[id].price * qty, 0)
   const totalStr = `£${total.toFixed(2)}`
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Your order" onLogoPress={onLogoPress} />
+      <ScreenHeader title="Your order" subtitle={deliveryTime ? `Delivery ${deliveryTime}` : undefined} subtitleIcon="clock" onLogoPress={onLogoPress} />
 
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
         {orderedItems.map(([id, qty]) => (
