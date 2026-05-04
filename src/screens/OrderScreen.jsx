@@ -1,15 +1,5 @@
 import ScreenHeader from '../components/ScreenHeader.jsx'
 
-function formatDeliveryDate(iso) {
-  if (!iso) return null
-  const d = new Date(iso + 'T12:00:00') // avoid timezone shifts
-  const day = d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase()
-  const date = d.getDate()
-  const n = date % 10, m = date % 100
-  const suffix = m === 11 || m === 12 || m === 13 ? 'TH' : n === 1 ? 'ST' : n === 2 ? 'ND' : n === 3 ? 'RD' : 'TH'
-  return `${day} ${date}${suffix}`
-}
-
 const PIZZAS = [
   { id: 'margherita',        name: 'Margherita',         ingredients: 'Tomato, Mozzarella',                          price: '£7' },
   { id: 'appleWalnut',       name: 'Apple and Walnut',   ingredients: 'Apple, blue cheese, Crushed walnuts',         price: '£9' },
@@ -83,21 +73,11 @@ function PizzaCard({ pizza, count, onDecrement, onIncrement }) {
 
 export default function OrderScreen({ quantities, onChangeQty, onContinue, onLogoPress }) {
   const hasItems = Object.values(quantities).some(q => q > 0)
-  const formattedDate = formatDeliveryDate(localStorage.getItem('gordys_delivery_date') || '')
 
   return (
     <div className="flex flex-col h-full bg-cream">
       <ScreenHeader title="Choose your Pizza(s)" onLogoPress={onLogoPress} />
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
-        {formattedDate && (
-          <>
-            <div className="flex flex-col items-center gap-1 pb-2">
-              <p className="font-condensed font-semibold text-crimson text-[13px] tracking-[2px] uppercase">Delivery</p>
-              <p className="font-condensed font-semibold text-[#0e2c35] text-[32px] tracking-[3.2px] uppercase">{formattedDate}</p>
-            </div>
-            <div className="border-t border-teal -mx-6" />
-          </>
-        )}
         {PIZZAS.map(pizza => (
           <PizzaCard
             key={pizza.id}

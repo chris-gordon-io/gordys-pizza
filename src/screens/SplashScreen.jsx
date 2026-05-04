@@ -1,6 +1,16 @@
 import { useEffect } from 'react'
 import GordysLogo from '../components/GordysLogo.jsx'
 
+function formatDeliveryDate(iso) {
+  if (!iso) return null
+  const d = new Date(iso + 'T12:00:00')
+  const day = d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase()
+  const date = d.getDate()
+  const n = date % 10, m = date % 100
+  const suffix = m === 11 || m === 12 || m === 13 ? 'TH' : n === 1 ? 'ST' : n === 2 ? 'ND' : n === 3 ? 'RD' : 'TH'
+  return `${day} ${date}${suffix}`
+}
+
 /**
  * GORDY'S splash screen.
  *
@@ -14,12 +24,22 @@ export default function SplashScreen({ onDone }) {
     return () => window.removeEventListener('keydown', handler)
   }, [onDone])
 
+  const formattedDate = formatDeliveryDate(localStorage.getItem('gordys_delivery_date') || '')
+
   return (
     <div
       onClick={() => onDone?.()}
       className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-cream select-none cursor-pointer"
     >
-      <GordysLogo className="logo-rise w-64 sm:w-72 md:w-80 h-auto" />
+      <div className="logo-rise flex flex-col items-center gap-4">
+        <GordysLogo className="w-64 sm:w-72 md:w-80 h-auto" />
+        {formattedDate && (
+          <div className="flex flex-col items-center gap-1">
+            <p className="font-condensed font-semibold text-crimson text-[13px] tracking-[2px] uppercase">Delivery</p>
+            <p className="font-condensed font-semibold text-[#0e2c35] text-[32px] tracking-[3.2px] uppercase">{formattedDate}</p>
+          </div>
+        )}
+      </div>
 
       <style>{`
         .logo-rise {
