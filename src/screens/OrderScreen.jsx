@@ -108,7 +108,7 @@ export default function OrderScreen({ quantities, onChangeQty, onContinue, onLog
           onClick={hasItems ? onContinue : undefined}
           className={`w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase text-cream transition-colors ${hasItems ? 'bg-crimson active:bg-crimson-dark' : 'bg-crimson-light'}`}
         >
-          Continue to your details
+          Continue to details
         </button>
       </div>
     </div>
