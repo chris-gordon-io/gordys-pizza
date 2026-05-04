@@ -29,7 +29,7 @@ export default function App() {
 
   useEffect(() => {
     if (screen !== 'splash') return
-    const t = setTimeout(() => setScreen('order'), 1200)
+    const t = setTimeout(() => setScreen('order'), 3000)
     return () => clearTimeout(t)
   }, [screen])
 
