@@ -90,14 +90,8 @@ export default function OrderScreen({ quantities, onChangeQty, onContinue, onLog
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Choose your Pizza(s)" onLogoPress={onLogoPress} />
-      <div className={`flex-1 overflow-y-auto px-6 flex flex-col gap-6 ${formattedDate ? 'pt-0' : 'pt-6'}`}>
-        {formattedDate && (
-          <div className="flex items-center justify-center gap-2 -mt-4">
-            <p className="font-condensed font-semibold text-[#0e2c35] text-[16px] tracking-[1.6px] uppercase">Delivery</p>
-            <p className="font-condensed font-semibold text-[#0e2c35] text-[16px] tracking-[1.6px] uppercase">{formattedDate}</p>
-          </div>
-        )}
+      <ScreenHeader title="Choose your Pizza(s)" subtitle={formattedDate ? `Delivery ${formattedDate}` : undefined} onLogoPress={onLogoPress} />
+      <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
         {PIZZAS.map(pizza => (
           <PizzaCard
             key={pizza.id}
