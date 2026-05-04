@@ -48,7 +48,7 @@ export default function OrderSummaryScreen({ quantities, deliveryTime, onPayPayp
         </button>
         <button
           onClick={onPayCash}
-          className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase border border-teal text-teal active:bg-teal/5"
+          className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase border border-teal text-teal bg-white active:bg-gray-100"
         >
           Pay {totalStr} with Cash
         </button>
