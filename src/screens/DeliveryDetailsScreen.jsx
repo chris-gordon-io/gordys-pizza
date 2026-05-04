@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import ScreenHeader from '../components/ScreenHeader.jsx'
 
 const TIMES = ['5:00', '5:30', '6:00', '6:30', '7:00', '7:30', '8:00', '8:30', '9:00', '9:30']
@@ -8,6 +9,12 @@ export default function DeliveryDetailsScreen({
   onContinue, onBack, onLogoPress,
 }) {
   const canContinue = doorNumber.length > 0 && selectedTime
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    const t = setTimeout(() => inputRef.current?.focus(), 50)
+    return () => clearTimeout(t)
+  }, [])
 
   const rows = []
   for (let i = 0; i < TIMES.length; i += 2) rows.push(TIMES.slice(i, i + 2))
@@ -28,6 +35,7 @@ export default function DeliveryDetailsScreen({
             inputMode="numeric"
             pattern="[0-9]*"
             maxLength={4}
+            ref={inputRef}
             value={doorNumber}
             onChange={e => onChangeDoor(e.target.value.replace(/\D/g, ''))}
             placeholder="00"
