@@ -16,7 +16,7 @@ function ClockIcon() {
   )
 }
 
-export default function ScreenHeader({ title, subtitle, subtitleIcon, onLogoPress, onBack }) {
+export default function ScreenHeader({ title, subtitle, subtitleIcon, onLogoPress, onBack, onClose }) {
   const Icon = subtitleIcon === 'clock' ? ClockIcon : CalendarIcon
   return (
     <div className="relative flex flex-col gap-6 items-center justify-center py-6 bg-cream shrink-0">
@@ -28,6 +28,17 @@ export default function ScreenHeader({ title, subtitle, subtitleIcon, onLogoPres
         >
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
             <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+      )}
+      {onClose && (
+        <button
+          onClick={onClose}
+          className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 text-teal active:opacity-60"
+          aria-label="Close"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
           </svg>
         </button>
       )}

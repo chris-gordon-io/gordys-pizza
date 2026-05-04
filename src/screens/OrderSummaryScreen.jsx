@@ -14,7 +14,7 @@ export default function OrderSummaryScreen({ quantities, deliveryTime, onPayPayp
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Your order" subtitle={deliveryTime ? `Delivery ${deliveryTime}` : undefined} subtitleIcon="clock" onLogoPress={onLogoPress} />
+      <ScreenHeader title="Your order" subtitle={deliveryTime ? `Delivery ${deliveryTime}` : undefined} subtitleIcon="clock" onLogoPress={onLogoPress} onClose={onCancel} />
 
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
         {orderedItems.map(([id, qty]) => (
@@ -51,12 +51,6 @@ export default function OrderSummaryScreen({ quantities, deliveryTime, onPayPayp
           className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase border border-teal text-teal active:bg-teal/5"
         >
           Pay {totalStr} with Cash
-        </button>
-        <button
-          onClick={onCancel}
-          className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase text-teal active:opacity-60"
-        >
-          Cancel
         </button>
       </div>
     </div>

@@ -41,7 +41,7 @@ export default function App() {
     setQuantities(INITIAL_QUANTITIES)
     setDoorNumber('')
     setSelectedTime(null)
-    setScreen('order')
+    setScreen('splash')
   }
 
   function handleLogoPress() {
