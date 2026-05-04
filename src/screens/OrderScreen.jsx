@@ -46,7 +46,7 @@ function Counter({ count, onDecrement, onIncrement }) {
             <MinusIcon />
           </button>
           <div className="w-8 h-8 flex items-center justify-center">
-            <span className="font-condensed font-semibold text-[24px] tracking-[2.4px] text-teal">
+            <span className="font-condensed font-semibold text-[18px] tracking-[1.8px] text-teal">
               {count}
             </span>
           </div>
