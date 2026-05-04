@@ -1,8 +1,19 @@
 import GordysLogo from './GordysLogo.jsx'
 
-export default function ScreenHeader({ title, subtitle, onLogoPress }) {
+export default function ScreenHeader({ title, subtitle, onLogoPress, onBack }) {
   return (
-    <div className="flex flex-col gap-6 items-center justify-center py-6 bg-cream shrink-0">
+    <div className="relative flex flex-col gap-6 items-center justify-center py-6 bg-cream shrink-0">
+      {onBack && (
+        <button
+          onClick={onBack}
+          className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 text-teal active:opacity-60"
+          aria-label="Back"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+      )}
       <button onClick={onLogoPress} className="focus:outline-none" aria-label="Admin">
         <GordysLogo className="w-[78px] h-auto" />
       </button>

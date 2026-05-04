@@ -21,7 +21,7 @@ export default function DeliveryDetailsScreen({
 
   return (
     <div className="flex flex-col h-full bg-cream">
-      <ScreenHeader title="Delivery Details" onLogoPress={onLogoPress} />
+      <ScreenHeader title="Delivery Details" onLogoPress={onLogoPress} onBack={onBack} />
 
       <div className="flex-1 overflow-y-auto px-6 pt-6 flex flex-col gap-6">
 
@@ -74,18 +74,12 @@ export default function DeliveryDetailsScreen({
         <div className="h-2" />
       </div>
 
-      <div className="shrink-0 flex flex-col gap-[10px] p-4 bg-cream">
+      <div className="shrink-0 p-4 bg-cream">
         <button
           onClick={canContinue ? onContinue : undefined}
           className={`w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase text-cream transition-colors ${canContinue ? 'bg-crimson active:bg-crimson-dark' : 'bg-crimson-light'}`}
         >
           Continue to payment
-        </button>
-        <button
-          onClick={onBack}
-          className="w-full py-3 font-condensed font-semibold text-[18px] tracking-[1.8px] uppercase border border-teal text-teal active:bg-teal/5"
-        >
-          Back
         </button>
       </div>
     </div>
