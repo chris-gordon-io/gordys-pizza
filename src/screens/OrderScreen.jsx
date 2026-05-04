@@ -19,7 +19,7 @@ const PIZZAS = [
 
 function MinusIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
       <path d="M19 13H5v-2h14v2z" />
     </svg>
   )
@@ -27,7 +27,7 @@ function MinusIcon() {
 
 function PlusIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
       <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
     </svg>
   )
