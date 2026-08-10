@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import SplashScreen from './screens/SplashScreen.jsx'
 import OrderScreen from './screens/OrderScreen.jsx'
 import DeliveryDetailsScreen from './screens/DeliveryDetailsScreen.jsx'
@@ -112,6 +113,7 @@ export default function App() {
           onHome={() => { handleCancel(); setScreen('splash') }}
         />
       )}
+      <Analytics />
     </div>
   )
 }
